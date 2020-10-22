@@ -1,4 +1,4 @@
-const basedatos = require('./basedatos');
+const pacientesRouter = require('./pacientesRouter');
 module.exports = (app) => {
-  app.use('/basedatos', basedatos);
+  app.use('/pacientes', pacientesRouter);
 };

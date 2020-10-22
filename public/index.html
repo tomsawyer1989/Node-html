@@ -19,16 +19,19 @@
       <h3>Taller Base de datos UNIVALLE</h3>
       <h4>Enviar Pacientes</h4>
       <fieldset>
-        <input placeholder="Nombre Paciente" name="nombre" type="text" tabindex="1" required autofocus>
+        <input placeholder="Nombre Paciente" id= "nombre" name="nombre" type="text" tabindex="1" required autofocus>
       </fieldset>
       <fieldset>
-        <input placeholder="Apellido Paciente" name="apellido" type="text" tabindex="1" required autofocus>
+        <input placeholder="Cédula Paciente" id="cedula" name="cedula" type="text" tabindex="2" required>
       </fieldset>
       <fieldset>
-        <input placeholder="Id Paciente" name="identificacion" type="text" tabindex="2" required>
+        <input placeholder="Edad Paciente" id="edad" name="edad" type="text" tabindex="1" required autofocus>
       </fieldset>
       <fieldset>
-        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+        <button name="get" type="button" id="get" data-submit="...Sending">Consultar</button>
+        <button name="post" type="submit" id="post" data-submit="...Sending">Crear</button>
+        <button name="put" type="button" id="put" data-submit="...Sending">Actualizar</button>
+        <button name="delete" type="button" id="delete" data-submit="...Sending">Eliminar</button>
       </fieldset>
 
     </form>
