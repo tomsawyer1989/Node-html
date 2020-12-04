@@ -57,4 +57,17 @@ visitaRouter.route('/informe/mensual')
     }
 })
 
+visitaRouter.route('/informe/semanal')
+.get(async (req,res) => {
+    try {
+        const {rows} = await pool.query(`SELECT date_part('day', visita.fecha) as dia, COUNT(date_part('day', visita.fecha)) AS cantidad FROM visita 
+        WHERE visita.fecha BETWEEN (now()::date-INTEGER '7') AND now()
+        GROUP BY dia ORDER BY dia ASC`);
+        res.send(rows);
+    } 
+    catch (error) {
+        console.log(error);
+    }
+})
+
 module.exports = visitaRouter;
