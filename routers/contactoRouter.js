@@ -5,14 +5,14 @@ const pool = require('../connect');
 
 const validate = require('../validate');
 
-const integranteRouter = express.Router();
+const contactoRouter = express.Router();
 
-integranteRouter.use(bodyParser.json());
+contactoRouter.use(bodyParser.json());
 
-integranteRouter.route('/')
+contactoRouter.route('/')
 .get(async (req,res) => {
     try {
-        const {rows} = await pool.query('SELECT * FROM integrante');
+        const {rows} = await pool.query('SELECT * FROM contacto');
         res.send(rows);
     } 
     catch (error) {
@@ -21,10 +21,10 @@ integranteRouter.route('/')
 })
 .post(async (req,res) => {
     try {
-        const { paciente_id, nombre, cedula, parentesco } = req.body;
+        const { paciente_id, nombre, telefono, email, parentesco } = req.body;
         await pool.query(
-            `INSERT INTO integrante (paciente_id, nombre, cedula, parentesco) VALUES(
-                '${paciente_id}','${nombre}','${cedula}','${parentesco}')`
+            `INSERT INTO contacto (paciente_id, nombre, telefono, email, parentesco) VALUES(
+                '${paciente_id}','${nombre}','${telefono}','${email}', '${parentesco}')`
         );
         res.send('INSERTADO');
     } 
@@ -33,11 +33,11 @@ integranteRouter.route('/')
     }
 })
 
-integranteRouter.route('/:paciente_id')
+contactoRouter.route('/:paciente_id')
 .get(async (req,res) => {
     try {
         const { paciente_id } = req.params;
-        const {rows} = await pool.query(`SELECT * FROM integrante WHERE paciente_id = '${paciente_id}'`);
+        const {rows} = await pool.query(`SELECT * FROM contacto WHERE paciente_id = '${paciente_id}'`);
         res.send(rows);
     } 
     catch (error) {
@@ -45,4 +45,4 @@ integranteRouter.route('/:paciente_id')
     }
 })
 
-module.exports = integranteRouter;
+module.exports = contactoRouter;

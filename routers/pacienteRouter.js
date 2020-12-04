@@ -54,4 +54,16 @@ pacienteRouter.route('/')
     }
 });
 
+pacienteRouter.route('/informe')
+.get(async (req,res) => {
+    try {
+        const {rows} = await pool.query(`SELECT paciente.edad, COUNT(paciente.edad) AS cantidad FROM paciente 
+        GROUP BY paciente.edad ORDER BY cantidad DESC`);
+        res.send(rows);
+    } 
+    catch (error) {
+        console.log(error);
+    }
+})
+
 module.exports = pacienteRouter;
